@@ -6,22 +6,7 @@
 //
 import SwiftData
 import SwiftUI
-/*
-class User: ObservableObject, Codable{
-    var firstName = "Jairo"
-    var lastName = "Laurente"
-}
-struct SecondView: View {
-    @Environment(\.dismiss) var dismiss
-    let name: String
-    var body: some View{
-        Button("dismiss"){
-            dismiss()
-        }
-        
-    }
-}
-*/
+
 
 struct ExpenseItem: Identifiable, Codable{
     var id = UUID()
@@ -49,18 +34,7 @@ class Expenses: ObservableObject{
 }
 @available(iOS 17.0, *)
 struct ContentView: View {
-   /*
-    @State private var user = User()
-    @State private var showingSheet = false
-    
-    //Crear vistas con listas donde se eliminan y agregan
-    
-    @State private var number = [Int]()
-    @AppStorage("currentNumber") private var currentNumber = 1
-    
-    func removeRows(at offsets: IndexSet){
-        number.remove(atOffsets: offsets)
-    }*/
+   
     @Environment(\.modelContext) var modelContext
     @StateObject private var expenses = Expenses()
     
@@ -70,48 +44,7 @@ struct ContentView: View {
     }
    
     var body: some View {
-       /* NavigationStack {
-            VStack{
-                Text("Your name is \(user.firstName) \(user.lastName)")
-                TextField("First name", text: $user.firstName)
-                TextField("Last name", text: $user.lastName)
-                Button("Show Alert"){
-                    showingSheet.toggle()
-                }
-                .sheet(isPresented: $showingSheet){
-                    SecondView(name: "Jairo")
-                }
-                VStack{
-                    //       Cualquiera de los dos
-                    List{
-                        ForEach(number, id: \.self){
-                            Text("Row \($0)")
-                        }
-                        .onDelete(perform: removeRows)
-                    }
-                    Button("Add number: \(currentNumber)"){
-                        number.append(currentNumber)
-                        currentNumber += 1
-                       // UserDefaults.standard.setValue(currentNumber, forKey: "Tap")
-                    }
-                    
-                }
-                .padding()
-                        
-            }
-            .toolbar{
-                EditButton()
-            }
-        }
-        */
-        /*
-        Button("Save User"){
-            let encoder = JSONEncoder()
-            if let data = try? encoder.encode(user){
-                UserDefaults.standard.set(data, forKey: "UserData")
-            }
-        }
-        */
+       
         NavigationStack{
             List{
                 ForEach(expenses.items){ item in
